@@ -3,6 +3,9 @@
 Adds token authentication to Roda.
 Based on [Roda Basic Auth](https://github.com/badosu/roda-basic-auth)
 
+[![Gem Version](https://badge.fury.io/rb/roda-token-auth.svg)](https://badge.fury.io/rb/roda-token-auth)
+[![Build Status](https://travis-ci.org/raivil/roda-token-auth.svg?branch=master)](https://travis-ci.org/raivil/roda-token-auth)
+
 ## Installation
 
 Add this line to your application's Gemfile:
