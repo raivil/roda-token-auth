@@ -51,6 +51,29 @@ RSpec.describe Roda::RodaPlugins::TokenAuth do
         get "/"
         expect(last_response.status).to eq(401)
       end
+      it "returns 401" do
+        header "X-Token", "foo"
+        header "X-Secret", "bar"
+        get "/"
+        expect(last_response.body).to eq({ errors: "Invalid Credentials", success: false}.to_json)
+      end
+      context " custom unauth body" do
+        before do
+          roda do |r|
+            r.plugin :token_auth, authenticator: ->(token, secret) { [token, secret] == %w[foo bar] },
+                                  unauthorized_body: proc { { errors: "Custom Message", custom_param: false} }
+          end
+          app_root { |u, p| [u, p] == %w[baz inga] }
+        end
+        context "correct credentials" do
+          it "returns correct body" do
+            header "X-Token", "foo"
+            header "X-Secret", "bar"
+            get "/"
+            expect(last_response.body).to eq({ errors: "Custom Message", custom_param: false}.to_json)
+          end
+        end
+      end
       context "no credentials" do
         it "returns 401" do
           get "/"

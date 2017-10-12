@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require "roda"
 require "roda/plugins/token_auth/version"
+require "json"
 
 module Roda::RodaPlugins
   module TokenAuth
@@ -8,7 +9,10 @@ module Roda::RodaPlugins
       token_variable: "X-Token",
       secret_variable: "X-Secret",
       unauthorized_headers: proc do |_opts|
-        { "Content-Type" => "application/json", "Content-Length" => "0" }
+        { "Content-Type" => "application/json" }
+      end,
+      unauthorized_body: proc do |_opts|
+        { errors: "Invalid Credentials", success: false}
       end
     }.freeze
 
@@ -28,7 +32,9 @@ module Roda::RodaPlugins
         auth_secret = header_variable(auth_opts, :secret_variable)
         return if authenticator.call(auth_token, auth_secret)
         auth_opts[:unauthorized]&.call(self)
-        halt [401, auth_opts[:unauthorized_headers].call(auth_opts), []]
+        halt [401,
+              auth_opts[:unauthorized_headers].call(auth_opts),
+              [auth_opts[:unauthorized_body].call(auth_opts).to_json]]
       end
 
       def header_variable(auth_opts, variable_name)

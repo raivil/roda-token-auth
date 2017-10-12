@@ -1,0 +1,14 @@
+require: rubocop-rspec
+
+Style/Lambda:
+  EnforcedStyle: literal
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Metrics/LineLength:
+  Max: 120
+  AllowURI: true
+
+Style/FirstHashElementLineBreak:
+  Enabled: true
