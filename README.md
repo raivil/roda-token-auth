@@ -6,6 +6,7 @@ Based on [Roda Basic Auth](https://github.com/badosu/roda-basic-auth)
 [![Gem Version](https://badge.fury.io/rb/roda-token-auth.svg)](https://badge.fury.io/rb/roda-token-auth)
 [![Build Status](https://travis-ci.org/raivil/roda-token-auth.svg?branch=master)](https://travis-ci.org/raivil/roda-token-auth)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c27ee51a6ea057c86ab3/maintainability)](https://codeclimate.com/github/raivil/roda-token-auth/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/c27ee51a6ea057c86ab3/test_coverage)](https://codeclimate.com/github/raivil/roda-token-auth/test_coverage)
 
 ## Installation
 
