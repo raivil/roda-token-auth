@@ -36,4 +36,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "rack-test", "0.7.0"
   spec.add_development_dependency "json", "~> 2.0"
+  spec.add_development_dependency "simplecov", "~> 0.11"
 end
